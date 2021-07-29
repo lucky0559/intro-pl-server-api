@@ -1,3 +1,4 @@
+require('./src/models/User')
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -29,8 +30,8 @@ mongoose.connection.on('error', (err) => {
 });
 
 
-app.get('/',requireAuth, (req, res) => {
-    res.send(`Your email is: ${req.user.email}`);
+app.get('/', (req, res) => {
+    res.send('Hello World');
 });
 
 app.listen(port, () => {
