@@ -11,11 +11,11 @@ app.use(bodyParser.json());
 
 const mongoUri = 'mongodb+srv://intro-pl:123@intro-pl@cluster0.kjlec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-mongoose.connect.on('connected', () => {
+mongoose.connection.on('connected', () => {
     console.log('Connected to mongo');
 });
 
-mongoose.connect.on('error', (err) => {
+mongoose.connection.on('error', (err) => {
     console.error('Connection error to mongo', err);
 });
 
