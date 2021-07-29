@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./src/routes/authRoutes');
 const requireAuth = require('./src/middleware/requireAuth');
+const image = require('./image.json')
 
 
 const app = express();
@@ -32,6 +33,10 @@ mongoose.connection.on('error', (err) => {
 
 app.get('/', requireAuth, (req, res) => {
     res.send('Hello World');
+});
+
+app.get('/image', (req, res) => {
+    res.send(image);
 });
 
 app.listen(port, () => {
