@@ -30,7 +30,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 
-app.get('/', (req, res) => {
+app.get('/', requireAuth, (req, res) => {
     res.send('Hello World');
 });
 
