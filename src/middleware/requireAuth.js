@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         return res.status(401).send({error: 'You must login in first'});
     }
 
-    const token = authorization.replace('Bearer', '');
+    const token = authorization.replace('Bearer ', '');
     jwt.verify(token, MY_INTROPL_KEY, async(err, payload) => {
         if(err) {
             return res.status(401).send({error: 'You must login first'});
