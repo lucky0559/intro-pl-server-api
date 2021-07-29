@@ -14,6 +14,12 @@ app.use(authRoutes);
 
 const mongoUri = 'mongodb+srv://intro-pl:123@intro-pl@cluster0.kjlec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
+mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+})
+
 mongoose.connection.on('connected', () => {
     console.log('Connected to mongo');
 });
