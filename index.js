@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const authRoutes = require('./src/routes/authRoutes');
+const topicRoutes = require('./src/routes/topicRoutes')
 const requireAuth = require('./src/middleware/requireAuth');
 const image = require('./image.json')
 
@@ -12,6 +13,7 @@ let port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(topicRoutes);
 
 
 const mongoUri = 'mongodb+srv://intro-pl:123@intro-pl@cluster0.kjlec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -35,9 +37,7 @@ app.get('/', requireAuth, (req, res) => {
     res.send('Hello World');
 });
 
-app.get('/image', (req, res) => {
-    res.send(image);
-});
+
 
 app.listen(port, () => {
     console.log(`Listening to port: ${port}`)
