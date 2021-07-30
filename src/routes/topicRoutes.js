@@ -18,7 +18,7 @@ router.post('/topic', async(req, res) => {
 });
 
 router.get('/topic', async(req, res) => {
-    const topics = await Topic.find({uid: req.topic.uid});
+    const topics = await Topic.find({uid: req.user._id});
     res.send(topics);
 })
 
