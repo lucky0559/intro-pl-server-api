@@ -27,19 +27,18 @@ router.get('/topic', async(req, res) => {
 
 
 
-router.delete('/topic', async(req, res) => {
+router.delete('/:_id', async(req, res, next) => {
 
-const {title} = req.body;
+    const id = req.params._id;
 
-    Topic.remove({
-        title: title
-    }), function (err, topic) {
-        if(err) {
-            return res.send(err);
-        }
-
-        res.send("Deleted");
+    try {
+        const result = await Topic.findByIdAndDelete(id);
+        res.send(result)
     }
+    catch(error) {
+        console.log(error.message)
+    }
+
 });
 
 
