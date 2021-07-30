@@ -27,7 +27,7 @@ router.get('/topic', async(req, res) => {
 
 
 
-router.delete('/:_id', async(req, res, next) => {
+router.delete('/topic/:_id', async(req, res, next) => {
 
     const id = req.params._id;
 
