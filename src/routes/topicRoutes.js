@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Topic = mongoose.model('Topic');
+const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 router.post('/topic', async(req, res) => {
     const {uid, title, image_url, info} = req.body;

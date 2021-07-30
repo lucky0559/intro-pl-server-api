@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const topicSchema = new mongoose.Schema({
     uid: {
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     title:{
         type:String,
