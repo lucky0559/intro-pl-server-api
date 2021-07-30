@@ -1,5 +1,5 @@
 require('./src/models/User');
-require('./src/models/Topic')
+require('./src/models/Topic');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
