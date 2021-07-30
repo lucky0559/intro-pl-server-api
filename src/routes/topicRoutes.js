@@ -15,6 +15,11 @@ router.post('/topic', async(req, res) => {
     catch(err) {
         return res.status(422).send({error: "Something went wrong in saving topic"})
     }
+});
+
+router.get('/topic', async(req, res) => {
+    const topics = await Topic.find({uid: req.topic.uid});
+    res.send(topics);
 })
 
 module.exports = router;
