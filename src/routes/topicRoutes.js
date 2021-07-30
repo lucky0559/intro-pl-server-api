@@ -8,10 +8,10 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.post('/topic', async(req, res) => {
-    const {uid, title, image_url, info} = req.body;
+    const {title, image_url, info} = req.body;
 
     try {
-        const topic = new Topic({uid, title, image_url, info});
+        const topic = new Topic({uid: req.user._id, title, image_url, info});
         await topic.save();
         res.send("Saved");
     }
