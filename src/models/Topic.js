@@ -16,4 +16,21 @@ const topicSchema = new mongoose.Schema({
     }
 })
 
+topicSchema.methods.compareTopic = function(candidateTitle) {
+    const topic = this;
+
+    return new Promise((resolve, reject) => {
+        compare(candidateTitle, topic.title, (err, isMatch) => {
+            if(err) {
+                return reject(err);
+            }
+            if(!isMatch) {
+                return reject(false);
+            }
+
+            resolve(true);
+        })
+    })
+}
+
 mongoose.model('Topic', topicSchema);
