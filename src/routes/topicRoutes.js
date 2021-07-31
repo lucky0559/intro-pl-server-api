@@ -10,8 +10,14 @@ router.use(requireAuth);
 router.post('/topic', async(req, res) => {
     const {title, image_url, info} = req.body;
 
+
+    const response = await Topic.findOne({title});
+        if(response) {
+            return res.status(404).send({error: 'Existing Topic'})
+        }
+
+
     try {
-        await topic.compareTopic(title);
         const topic = new Topic({uid: req.user._id, title, image_url, info});
         await topic.save();
         res.send("Saved");
@@ -27,8 +33,19 @@ router.get('/topic', async(req, res) => {
 });
 
 
+// router.get('/topic/:title', async(req, res) => {
+//     const {title} = req.body;
+//     const topic = await Topic.findOne({title});
 
-router.delete('/topic/:_id', async(req, res, next) => {
+//     if(topic) {
+//         return res.status(404).send({error: 'Existing topic'})
+//     }
+//     res.send("Added");
+// })
+
+
+
+router.delete('/topic/:_id', async(req, res) => {
 
     const id = req.params._id;
 
